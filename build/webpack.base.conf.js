@@ -5,7 +5,6 @@ const resolve = function (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  mode: 'development',
   entry: {
     main: resolve('src/main.js')
   },
@@ -14,10 +13,12 @@ module.exports = {
     path: resolve('dist')
   },
   resolve: {
+    extensions: ['.js'],
     alias: {
       '@': resolve('src')
     }
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [{
       test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

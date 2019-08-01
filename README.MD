@@ -39,7 +39,9 @@ plugins: [
 #### html-webpack-plugin 根据指定的index.html模板生成对应的 html 文件
 需要注意的是：配合html-loader处理 html 文件中的<img>标签和属性，此时和html-webpack-plugin产生冲突，
 利用webpack的html-webpack-plugin插件来打包传统的多页面项目，html-loader处理html里的img:src的资源问题
-
+#### 模块热替换 webpack-dev-server 
+安装
+> yarn add webpack-dev-server
 ### react
 #### 安装react
 ```ruby
