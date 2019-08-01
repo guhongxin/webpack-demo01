@@ -72,3 +72,5 @@ plugins:代表babel解析的时候使用哪些插件，作用和presets类似，
 * @babel/preset-env 将ES6转义成ES5
 * @babel/preset-react 将JSX转义成js
 
+这是什么
+
