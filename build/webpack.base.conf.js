@@ -5,7 +5,7 @@ const resolve = function (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     main: resolve('src/main.js')
   },
@@ -27,6 +27,13 @@ module.exports = {
         name: '[name].[hash:7].[ext]',
         outputPath: 'image'
       }
+    }, {
+      test: /\.js?$/,
+      include: /src/,          // 只转化src目录下的js
+      exclude: /node_modules/,
+      use: {
+        loader: "babel-loader"
+      }
     }]
   },
   plugins: [
@@ -36,8 +43,6 @@ module.exports = {
       title: 'webpack-react-demo',
       favicon: resolve('public/favicon.ico')
     }),
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: [path.join(__dirname, '..', 'dist')] 
-    })
+    new CleanWebpackPlugin()
   ]
 }

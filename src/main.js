@@ -1,6 +1,11 @@
-function a() {
-  let img = new Image()
-  img.src = imgt
-  document.body.append(img)
+import React from 'react'
+import ReactDom from 'react-dom'
+
+const Main = () =>  {
+  return <div>hello  word</div>
 }
-a()
+
+ReactDom.render(
+  <Main />,
+  document.getElementById('app')
+);

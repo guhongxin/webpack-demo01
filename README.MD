@@ -36,4 +36,39 @@ plugins: [
   })
 ]
 ```
+#### html-webpack-plugin 根据指定的index.html模板生成对应的 html 文件
+需要注意的是：配合html-loader处理 html 文件中的<img>标签和属性，此时和html-webpack-plugin产生冲突，
+利用webpack的html-webpack-plugin插件来打包传统的多页面项目，html-loader处理html里的img:src的资源问题
+
+### react
+#### 安装react
+```ruby
+  yarn add react react-dom
+```
+### babel
+bebel是用来解析es6语法或者是es7语法分解析器，让开发者能够使用新的es语法，同时支持jsx，vue等多种框架
+#### 安装babel
+```ruby
+  yarn add babel-loader babel-cli --dev
+  注意：babel-cli 是核心库, babel-loader起到链接webpack
+```
+#### babel配置文件：.babelrc
+在根目录下新建.babelrc
+配置
+```ruby
+  {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ],
+    "plugins": []
+  }
+```
+babel支持自定义的预设(presets)或插件(plugins),只有配置了这两个才能让babel生效，单独的安装babel是无意义的
+presets：代表babel支持那种语法(就是你用那种语法写)，优先级是从下往上,state-0|1|2|..代表有很多没有列入标准的语法回已state-x表示,参考这里
+plugins:代表babel解析的时候使用哪些插件，作用和presets类似，优先级是从上往下
+
+依次安装
+* @babel/preset-env 将ES6转义成ES5
+* @babel/preset-react 将JSX转义成js
 
