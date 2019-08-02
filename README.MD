@@ -136,14 +136,63 @@ babel-plugin-import 是一个用于按需加载组件代码和样式的 babel �
   ]
 ]
 ```
-##### 修改主题色
+并且按下面的格式引入模块
+
 ```javascript {}
-"plugins": [
-  [ "import", { 
-    "libraryName": "antd", 
-    "libraryDirectory": "es",
-    "style": "css" 
-    }
-  ]
+import React, { Component } from 'react'
+import { Button } from 'antd'
+class  App extends Component {
+  constructor() {
+    super()
+    this.handClick = this.handClick.bind(this)
+  }
+  handClick () {
+    console.log('你好吗')
+  }
+  render() {
+    return (
+      <div onClick={this.handClick} className="test">
+        <p className="p-sty">hello word<Button type="primary">Button</Button></p>
+      </div>
+    )
+  }
+}
+export default App
+```
+
+##### 修改主题色
+按照 配置主题 的要求，自定义主题需要用到 less 变量覆盖功能,所以安装less less-loader，less将less正确解析成css，less-loader用来打包时用
+```ruby
+  yarn add less less-loader --dev
+```
+找到webpack.config.js的less-loader， 在options中添加
+```javascript {}
+{
+  loader: 'less-loader',
+  options: {
+    sourceMap: true,
+    modifyVars: {
+      'primary-color': '#1DA57A',
+      'link-color': '#1DA57A',
+      'border-radius-base': '2px'
+    },
+    javascriptEnabled: true   // 此项不能忘
+  }
+}
+```
+此处有个坑，之前使用ExtractTextPlugin插件对css样式提取，但如配置主题色修改，不能再使用提取插件，另外，找到.babelrc中找到之前按需加载的配置修改：
+```javascript {}
+['import', { 
+      libraryName: 'antd', 
+      style:  true
+   }
 ]
 ```
+删除之前的 libraryDirectory: ‘es‘,
+修改之前的 style: "css" 为 style: true
+修改主题是基于less提供的modifyVars变量进行修改的，所以按需加载时使用true
+
+意注意该步很容易有报错，
+> .bezierEasingMixin();Inline JavaScript is not enabled. Is it set in your options?
+
+此时检查package.json中看看less的版本是否是3.x, 如果时降为less@2.7.3再重启项目，搞定

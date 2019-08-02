@@ -10,9 +10,8 @@
   ],
   "plugins": [
     [ "import", { 
-      "libraryName": "antd", 
-      "libraryDirectory": "es",
-      "style": "css" 
+      "libraryName": "antd",
+      "style":  true
       }
     ]
   ]

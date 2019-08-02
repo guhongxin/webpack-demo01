@@ -7,11 +7,14 @@ class  App extends Component {
   }
   handClick () {
     console.log('你好吗')
+    import( /* webpackChunkName: "my-chunk-name" */ /* webpackPrefetch: true */ '@/utils/test').then(function({default: _}) {
+      console.log(_())
+    })
   }
   render() {
     return (
       <div onClick={this.handClick} className="test">
-        hello word<Button type="primary">Button</Button>
+        <p className="p-sty">hello word<Button type="primary">Button</Button></p>
       </div>
     )
   }
