@@ -5,7 +5,6 @@ const resolve = function (dir) {
   return path.join(__dirname, '..', dir)
 }
 module.exports = {
-  mode: 'development',
   entry: {
     main: resolve('src/main.js')
   },
@@ -14,6 +13,7 @@ module.exports = {
     path: resolve('dist')
   },
   resolve: {
+    extensions: ['.js'],
     alias: {
       '@': resolve('src')
     }

@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-
-const Main = () =>  {
-  return <div>hello  word</div>
-}
+import App from './view/app.js'
 
 ReactDom.render(
-  <Main />,
+  <App />,
   document.getElementById('app')
 );
