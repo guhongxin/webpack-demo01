@@ -6,14 +6,8 @@
   "author": "wangdanfeng <1204738681@qq.com>",
   "license": "MIT",
   "scripts": {
-<<<<<<< HEAD
     "serve": "webpack-dev-server --config ./build/webpack.dev.conf.js",
     "build": "webpack --config ./build/webpack.prod.conf.js",
-    "start": "react-app-rewired start",
-=======
-    "serve": "webpack-dev-server --config ./build/webpack.dev.conf.js --open",
-    "build": "webpack --config ./build/webpack.prod.conf.js",
->>>>>>> ea2b48b853e789dcbdd05620d40fd4ccd3131e07
     "test": "webpack webpack.config.js"
   },
   "devDependencies": {
