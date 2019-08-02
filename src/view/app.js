@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Button } from 'antd'
 class  App extends Component {
   constructor() {
     super()
@@ -9,8 +10,8 @@ class  App extends Component {
   }
   render() {
     return (
-      <div onClick={this.handClick}>
-        hello word
+      <div onClick={this.handClick} className="test">
+        hello word<Button type="primary">Button</Button>
       </div>
     )
   }

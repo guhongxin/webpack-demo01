@@ -8,7 +8,9 @@
 ### 2、安装webpack
 采用局部安装webpack在命令行中输入,使用 webpack 4+ 版本，你还需要安装 CLI
 >yarn add webpack webpack-cli --dev
-
+### webpack 配置
+#### devtool 此选项控制是否生成，以及如何生成 source map
+使用方法见官网：https://www.webpackjs.com/configuration/devtool/
 ### webpack 相关插件使用方法
 #### clean-webpack-plugin 清空的文件目录
 需要注意的是：应该把CleanWebpackPlugin放在plugin配置项的最后一个，因为 webpack 配置是倒序的（最后配置的最先执行）。以保证每次正式打包前，先清空原来遗留的打包文件
@@ -74,3 +76,74 @@ plugins:代表babel解析的时候使用哪些插件，作用和presets类似，
 * @babel/preset-env 将ES6转义成ES5
 * @babel/preset-react 将JSX转义成js
 
+### 引入antd
+1、安装antd
+```ruby
+  $ yarn add antd
+```
+修改 `src/main.js`，引入 antd 的按钮组件
+
+```javascript {.line-numbers}
+import 'antd/dist/antd.css' // 引入antd样式
+
+ReactDom.render(
+  <App />,
+  document.getElementById('app')
+)
+
+```
+修改 src/app.js，引入 antd 的按钮组件
+
+```javascript {}
+import React, { Component } from 'react'
+import Button from 'antd/es/button'
+class  App extends Component {
+  constructor() {
+    super()
+    this.handClick = this.handClick.bind(this)
+  }
+  handClick () {
+    console.log('你好吗')
+  }
+  render() {
+    return (
+      <div onClick={this.handClick} className="test">
+        hello word<Button type="primary">Button</Button>
+      </div>
+    )
+  }
+}
+export default App
+```
+
+#### 高级配置
+已经把组件成功运行起来了，但是在实际开发过程中还有很多问题，例如上面的例子实际上加载了全部的 antd 组件的样式（gzipped 后一共大约 60kb)
+
+使用 babel-plugin-import
+babel-plugin-import 是一个用于按需加载组件代码和样式的 babel 插件（原理）
+```ruby
+  $ yarn add babel-plugin-import --dev
+```
+##### 按需加载
+在.babelrc中添加plugins (这里也可以在babel-loader的options中添加)
+```javascript {}
+"plugins": [
+  [ "import", { 
+    "libraryName": "antd", 
+    "libraryDirectory": "es",
+    "style": "css" 
+    }
+  ]
+]
+```
+##### 修改主题色
+```javascript {}
+"plugins": [
+  [ "import", { 
+    "libraryName": "antd", 
+    "libraryDirectory": "es",
+    "style": "css" 
+    }
+  ]
+]
+```
