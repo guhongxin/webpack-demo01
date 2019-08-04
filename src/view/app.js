@@ -7,7 +7,7 @@ class  App extends Component {
   }
   handClick () {
     console.log('你好吗')
-    import( /* webpackChunkName: "my-chunk-name" */ /* webpackPrefetch: true */ '@/utils/test').then(function({default: _}) {
+    import( /* webpackPrefetch: true */ '@/utils/test.js').then(function({default: _}) {
       console.log(_())
     })
   }
